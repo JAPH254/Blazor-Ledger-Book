@@ -1,0 +1,98 @@
+@page "/transactions/{MemberId:int}"
+<PageTitle>Transactions</PageTitle>
+
+@inject SelfHelpLedger.Data.AppDbContext DbContext
+@using SelfHelpLedger.Models
+@using Microsoft.EntityFrameworkCore
+@rendermode InteractiveServer
+
+<h3 class='bg-success text-white rounded p-1 text-sm'>Transaction History for Member</h3>
+
+@if (member == null)
+{
+    <p><em>Loading member information...</em></p>
+}
+else
+{
+    <h4 class='text-info'>@member.Name (@member.Balance.ToString("C"))</h4>
+
+    <!-- Search Bar -->
+    <div class="form-group mb-3">
+        <label for="searchTerm" class="text-success ">Search Transaction Number:</label>
+        <InputText id="searchTerm" class="form-control" @bind-Value="searchTerm" placeholder="eg. PQ24GDMSJ34I" />
+        <button class="btn btn-primary mt-2" @onclick="SearchTransactions">Search</button>
+    </div>
+
+    @if (filteredTransactions == null)
+    {
+        <p><em>Loading transactions...</em></p>
+    }
+    else if (!filteredTransactions.Any())
+    {
+        <p>No transactions found for this member.</p>
+    }
+    else
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Transaction Number</th>
+                    <th>Date</th>
+                    <th>Type</th>
+                    <th>Amount (Ksh)</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var txn in filteredTransactions)
+                {
+                    <tr>
+                        <td>@txn.TransactionNumber</td>
+                        <td>@txn.Date.ToLocalTime().ToString("g")</td>
+                        <td>@txn.Type</td>
+                        <td>@txn.Amount.ToString("C")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+}
+
+@code {
+    [Parameter]
+    public int MemberId { get; set; }
+
+    private Member member;
+    private List<Transaction> transactions;
+    private List<Transaction> filteredTransactions;
+    private string searchTerm = string.Empty;
+
+    protected override async Task OnInitializedAsync()
+    {
+        member = await DbContext.Members.FindAsync(MemberId);
+
+        if (member != null)
+        {
+            transactions = await DbContext.Transactions
+                .Where(t => t.MemberId == MemberId)
+                .OrderByDescending(t => t.Date)
+                .ToListAsync();
+
+            filteredTransactions = transactions;
+        }
+    }
+
+    private void SearchTransactions()
+    {
+        if (string.IsNullOrWhiteSpace(searchTerm))
+        {
+            filteredTransactions = transactions;
+        }
+        else
+        {
+            filteredTransactions = transactions
+                .Where(t => !string.IsNullOrEmpty(t.TransactionNumber) &&
+                            t.TransactionNumber.Contains(searchTerm, StringComparison.OrdinalIgnoreCase))
+                .ToList();
+        }
+    }
+}
