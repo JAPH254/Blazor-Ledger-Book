@@ -1,0 +1,102 @@
+@page "/withdrawal"
+<PageTitle>Ledger Withdrawal</PageTitle>
+
+@inject SelfHelpLedger.Data.AppDbContext DbContext
+@using SelfHelpLedger.Models
+@using Microsoft.EntityFrameworkCore
+@using Microsoft.AspNetCore.Components.Forms
+@rendermode InteractiveServer
+
+<h3 class="bg-success text-white rounded p-1 text-sm">Withdraw Money</h3>
+
+<EditForm Model="@withdrawalModel" OnValidSubmit="HandleWithdrawal" FormName="WithdrawalForm">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group">
+        <label for="member" class="text-success">Member:</label>
+        <select id="member" class="form-control" @bind="withdrawalModel.MemberId">
+            <option value="">-- Select Member --</option>
+            @foreach (var m in members)
+            {
+                <option value="@m.Id">@m.Name (@m.Balance)</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="amount" class="text-success">Withdrawal Amount (Ksh):</label>
+        <InputNumber TValue="decimal" id="amount" class="form-control" @bind-Value="withdrawalModel.Amount" />
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-3">Submit Withdrawal</button>
+</EditForm>
+
+@if (!string.IsNullOrEmpty(withdrawalMessage))
+{
+    <p class="alert alert-success mt-3">@withdrawalMessage</p>
+}
+@if (!string.IsNullOrEmpty(withdrawalError))
+{
+    <p class="alert alert-danger mt-3">@withdrawalError</p>
+}
+
+@code {
+    private List<Member> members = new();
+    private WithdrawalModel withdrawalModel = new();
+    private string withdrawalMessage = string.Empty;
+    private string withdrawalError = string.Empty;
+
+    protected override async Task OnInitializedAsync()
+    {
+        members = await DbContext.Members.ToListAsync();
+    }
+
+    private async Task HandleWithdrawal()
+    {
+        withdrawalError = string.Empty;
+        var member = await DbContext.Members.FindAsync(withdrawalModel.MemberId);
+        if (member != null)
+        {
+            if (member.Balance < withdrawalModel.Amount)
+            {
+                withdrawalError = $"Insufficient funds. Current balance: {member.Balance.ToString("C")}";
+                return;
+            }
+
+            member.Balance -= withdrawalModel.Amount;
+
+            var transaction = new Transaction
+            {
+                MemberId = member.Id,
+                Amount = withdrawalModel.Amount,
+                Type = "Withdrawal",
+                Date = DateTime.UtcNow,
+                TransactionNumber = GenerateTransactionNumber()
+            };
+
+            DbContext.Transactions.Add(transaction);
+            await DbContext.SaveChangesAsync();
+
+            withdrawalMessage = $"Withdrawal successful for {member.Name}!";
+            withdrawalModel = new WithdrawalModel(); 
+            members = await DbContext.Members.ToListAsync(); 
+            StateHasChanged();
+        }
+        else
+        {
+            withdrawalError = "Selected member not found.";
+        }
+    }
+
+    private string GenerateTransactionNumber()
+    {
+        return Guid.NewGuid().ToString("N").Substring(0, 12).ToUpper();
+    }
+
+    public class WithdrawalModel
+    {
+        public int MemberId { get; set; }
+        public decimal Amount { get; set; }
+    }
+}
