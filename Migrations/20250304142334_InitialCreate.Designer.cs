@@ -12,7 +12,7 @@ using SelfHelpLedger.Data;
 namespace SelfHelpLedger.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250303151226_InitialCreate")]
+    [Migration("20250304142334_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -61,6 +61,10 @@ namespace SelfHelpLedger.Migrations
 
                     b.Property<int>("MemberId")
                         .HasColumnType("int");
+
+                    b.Property<string>("TransactionNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Type")
                         .IsRequired()

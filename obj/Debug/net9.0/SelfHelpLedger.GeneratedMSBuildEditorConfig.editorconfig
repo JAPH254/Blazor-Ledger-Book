@@ -36,6 +36,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9Db3VudGVyLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
+[/home/japh/Deveoper/Dotnet/SelfHelpLedger/Components/Pages/Deposit.Razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9EZXBvc2l0LlJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
 [/home/japh/Deveoper/Dotnet/SelfHelpLedger/Components/Pages/Error.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9FcnJvci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
@@ -48,8 +52,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9NZW1iZXJSZWdpc3RyYXRpb24ucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
+[/home/japh/Deveoper/Dotnet/SelfHelpLedger/Components/Pages/MembersList.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9NZW1iZXJzTGlzdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/japh/Deveoper/Dotnet/SelfHelpLedger/Components/Pages/TransactionHistory.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9UcmFuc2FjdGlvbkhpc3RvcnkucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
 [/home/japh/Deveoper/Dotnet/SelfHelpLedger/Components/Pages/Weather.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9XZWF0aGVyLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/japh/Deveoper/Dotnet/SelfHelpLedger/Components/Pages/Withdrawal.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9XaXRoZHJhd2FsLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
 [/home/japh/Deveoper/Dotnet/SelfHelpLedger/Components/Routes.razor]
