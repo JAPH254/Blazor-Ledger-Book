@@ -2,32 +2,37 @@
 @inject SelfHelpLedger.Data.AppDbContext DbContext
 @using SelfHelpLedger.Models
 @using Microsoft.AspNetCore.Components.Forms
+@rendermode InteractiveServer 
 
-<h3>Register New Member</h3>
+<h3 class="bg-success text-sm text-white rounded p-1">Register New Member</h3>
 
-<EditForm Model="@member" OnValidSubmit="HandleValidSubmit" FormName="MemberRegistrationForm">
+<EditForm Model="@member" OnValidSubmit="HandleValidSubmit" FormName="UniqueMemberForm">
     <DataAnnotationsValidator />
     <ValidationSummary />
 
     <div class="form-group">
-        <label for="name">Name:</label>
-        <InputText id="name" class="form-control" @bind-Value="member.Name" />
+        <label for="name" class="text-success" >Name:</label>
+        <InputText id="name" class="form-control" @bind-Value="member.Name" required placeholder="eg. Japheth Omanyu"/>
+        <ValidationMessage For="@(() => member.Name)" />
     </div>
-    <div class="form-group">
-        <label for="balance">Initial Balance:</label>
-        <InputNumber id="balance" class="form-control" @bind-Value="member.Balance" />
-    </div>
-    <button type="submit" class="btn btn-primary mt-3">Register</button>
+    <button type="submit" class="btn btn-success mt-3">Register</button>
 </EditForm>
-
+@if (!string.IsNullOrEmpty(RegisterMessage))
+{
+    <p class="alert alert-success mt-3">@RegisterMessage</p>
+}
 
 @code {
     private Member member = new();
+    private string RegisterMessage = string.Empty;
 
     private async Task HandleValidSubmit()
     {
-        DbContext.Members.Add(member);
-        await DbContext.SaveChangesAsync();
-        // Optionally, navigate to the member list or show a confirmation message
+        
+            DbContext.Members.Add(member);
+            await DbContext.SaveChangesAsync();
+            RegisterMessage = "Member Added succesfully";
+            member = new Member(); 
+      
     }
 }
