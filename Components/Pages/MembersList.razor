@@ -1,0 +1,51 @@
+@page "/members"
+<PageTitle>all members</PageTitle>
+
+@inject SelfHelpLedger.Data.AppDbContext DbContext
+@using SelfHelpLedger.Models
+@using Microsoft.EntityFrameworkCore
+@rendermode InteractiveServer
+
+<h3 class="bg-success text-white rounded p-1 text-sm">Members List</h3>
+
+@if (members == null)
+{
+    <p><em>Loading...</em></p>
+}
+else if (!members.Any())
+{
+    <p class='text-danger'>No members found.</p>
+}
+else
+{
+    <table class="table bg-light" >
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Balance (Ksh)</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var member in members)
+            {
+                <tr>
+                    <td class="text-secondary">@member.Name</td>
+                    <td class="text-success">@member.Balance.ToString("C")</td>
+                    <td>
+                        <a class="btn btn-info" href="@($"/transactions/{member.Id}")">View Transactions</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<Member> members;
+
+    protected override async Task OnInitializedAsync()
+    {
+        members = await DbContext.Members.ToListAsync();
+    }
+}
