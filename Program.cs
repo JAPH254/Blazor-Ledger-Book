@@ -1,3 +1,5 @@
+using Microsoft.EntityFrameworkCore;
+using SelfHelpLedger.Data;
 using SelfHelpLedger.Components;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -5,6 +7,11 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
+var connectionString = "Server=localhost;Database=SelfHelpLedger;User Id=sa;Password=Japh254!*#;TrustServerCertificate=True;";
+
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlServer(connectionString));
+
 
 var app = builder.Build();
 
