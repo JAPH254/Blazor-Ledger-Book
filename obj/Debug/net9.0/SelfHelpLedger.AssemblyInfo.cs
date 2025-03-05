@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SelfHelpLedger")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7a92cdd9df359e1c19ef61420899fab8839500c3")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b6bb0a9071d02521066a5730b5323c53e98c037e")]
 [assembly: System.Reflection.AssemblyProductAttribute("SelfHelpLedger")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SelfHelpLedger")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
