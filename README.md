@@ -64,7 +64,7 @@ Open a terminal in the project directory and run:
    dotnet run  
    ```
 
-5. Open a web browser and navigate to `http://localhost:5000` to access the application.
+5. Open a web browser and navigate to `http://localhost:5182` to access the application.
 
 ## Navigation
 Once the app is running, use the navigation menu to access different features:
