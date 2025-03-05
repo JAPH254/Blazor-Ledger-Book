@@ -37,3 +37,52 @@ Before running the application, ensure you have the following installed:
    ```bash
    git clone https://github.com/yourusername/SelfHelpLedger.git
    cd SelfHelpLedger
+
+2. **Database Setup**
+Update Connection String:
+
+In Program.cs, update the connection string to point to your SQL Server instance:
+```bash
+
+var connectionString = "Server=localhost;Database=SelfHelpLedger;User Id=sa;Password=YourStrong!Passw0rd;TrustServerCertificate=True;";
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlServer(connectionString));
+```
+Replace YourStrong!Passw0rd with your actual SQL Server password.
+
+3. **Create and Apply Migrations:**
+Open a terminal in the project directory and run:
+
+   ```bash
+   dotnet ef migrations add InitialCreate
+   dotnet ef database update
+
+   ```
+
+4. **Run the Application:**
+   ```bash
+   dotnet run  
+   ```
+
+5. Open a web browser and navigate to `http://localhost:5000` to access the application.
+
+## Navigation
+Once the app is running, use the navigation menu to access different features:
+
+New Member:
+Register a new member at /members/new.
+
+Deposit:
+Record a deposit transaction at /deposit.
+
+Withdrawal:
+Record a withdrawal transaction at /withdrawal.
+
+Members List:
+View all members and their balances at /members.
+
+Transaction History:
+Click on the "View Transactions" button next to a member in the Members List, or navigate directly using /transactions/{MemberId} (e.g., /transactions/1).
+
+Transaction Search:
+On the Transaction History page, use the search bar to filter transactions by the unique transaction number.
