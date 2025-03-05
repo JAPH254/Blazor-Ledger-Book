@@ -10,11 +10,9 @@ SelfHelpLedger is a Blazor Server application designed for a self-help group to 
 - [Database Setup](#database-setup)
 - [Running the Application](#running-the-application)
 - [Navigation](#navigation)
-- [Troubleshooting](#troubleshooting)
-- [License](#license)
 
 ## Features
-
+![alt text](image.png)
 - **Member Registration:** Add new members with a name and initial balance.
 - **Deposits:** Increase a member’s balance by recording deposit transactions.
 - **Withdrawals:** Decrease a member’s balance (with sufficient funds) by recording withdrawal transactions.
@@ -71,18 +69,18 @@ Once the app is running, use the navigation menu to access different features:
 
 New Member:
 Register a new member at /members/new.
-
+![alt text](image-1.png)
 Deposit:
 Record a deposit transaction at /deposit.
-
+![alt text](image-2.png)
 Withdrawal:
 Record a withdrawal transaction at /withdrawal.
-
+![alt text](image-3.png)
 Members List:
 View all members and their balances at /members.
-
+![alt text](image-4.png)
 Transaction History:
 Click on the "View Transactions" button next to a member in the Members List, or navigate directly using /transactions/{MemberId} (e.g., /transactions/1).
-
+![alt text](image-5.png)
 Transaction Search:
 On the Transaction History page, use the search bar to filter transactions by the unique transaction number.
