@@ -37,6 +37,7 @@ Before running the application, ensure you have the following installed:
    cd SelfHelpLedger
 
 2. **Database Setup**
+## Database Setup
 Update Connection String:
 
 In Program.cs, update the connection string to point to your SQL Server instance:
@@ -58,6 +59,7 @@ Open a terminal in the project directory and run:
    ```
 
 4. **Run the Application:**
+## Running the Application
    ```bash
    dotnet run  
    ```
