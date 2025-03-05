@@ -1,6 +1,11 @@
 using Microsoft.EntityFrameworkCore;
 using SelfHelpLedger.Data;
 using SelfHelpLedger.Components;
+using System.Globalization;
+
+CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("en-KE");
+CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo("en-KE");
+
 
 var builder = WebApplication.CreateBuilder(args);
 
