@@ -1,6 +1,6 @@
 # SelfHelpLedger
 
-SelfHelpLedger is a Blazor Server application designed for a self-help group to manage member registration, deposits, withdrawals, and to view transaction history with a unique 6-character transaction number for each transaction. The app uses SQL Server for data storage.
+SelfHelpLedger is a Blazor Server application designed for a self-help group to manage member registration, deposits, withdrawals, and to view transaction history with a unique transaction number for each transaction. The app uses SQL Server for data storage.
 
 ## Explore
 
@@ -13,7 +13,7 @@ SelfHelpLedger is a Blazor Server application designed for a self-help group to 
 
 ## Features
 ![alt text](image.png)
-- **Member Registration:** Add new members with a name and initial balance.
+- **Member Registration:** Add new members with a name.
 - **Deposits:** Increase a member’s balance by recording deposit transactions.
 - **Withdrawals:** Decrease a member’s balance (with sufficient funds) by recording withdrawal transactions.
 - **Member List:** Display all registered members with their current balances.
