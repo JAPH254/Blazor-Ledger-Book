@@ -2,7 +2,7 @@
 
 SelfHelpLedger is a Blazor Server application designed for a self-help group to manage member registration, deposits, withdrawals, and to view transaction history with a unique 6-character transaction number for each transaction. The app uses SQL Server for data storage.
 
-## Table of Contents
+## Explore
 
 - [Features](#features)
 - [Prerequisites](#prerequisites)
@@ -25,7 +25,7 @@ SelfHelpLedger is a Blazor Server application designed for a self-help group to 
 Before running the application, ensure you have the following installed:
 
 - [.NET 9 SDK](https://dotnet.microsoft.com/download/dotnet/9.0)
-- [SQL Server](https://www.microsoft.com/en-us/sql-server/sql-server-downloads) (local installation or a cloud instance)
+- [SQL Server](https://www.microsoft.com/en-us/sql-server/sql-server-downloads)
 - A code editor (e.g., [Visual Studio Code](https://code.visualstudio.com/))
 
 ## Installation
@@ -33,7 +33,7 @@ Before running the application, ensure you have the following installed:
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/yourusername/SelfHelpLedger.git
+   git clone git@github.com:JAPH254/Blazor-Ledger-Book.git
    cd SelfHelpLedger
 
 2. **Database Setup**
